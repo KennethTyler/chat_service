@@ -13,7 +13,15 @@ interface ISettingCreate {
 class SettingsService { 
 
     async create({chat , username} : ISettingCreate) { 
-        const settingsRepository = getCustomRepository(SettingsRepository)
+        const settingsRepository = getCustomRepository(SettingsRepository);
+
+        const userAlreadyExists = await settingsRepository.findOne({
+            username
+        }) ; 
+
+        if(userAlreadyExists) {
+            throw new Error ("User Already Exists!");
+        }
 
         const settings = settingsRepository.create({
         chat,
