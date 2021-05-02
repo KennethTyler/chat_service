@@ -1,9 +1,9 @@
 import { EntityRepository, Repository } from "typeorm";
-import { user } from "../entities/user";
+import { User } from "../entities/user";
 
 
-@EntityRepository(user)
-class UsersRepository extends Repository<user> {
+@EntityRepository(User)
+class UsersRepository extends Repository<User> {
     static findOne(arg0: { email: string; }) {
         throw new Error("Method not implemented.");
     }
